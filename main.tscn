@@ -1,43 +1,45 @@
-[gd_scene load_steps=12 format=3 uid="uid://ccgfdjmtd58r3"]
+[gd_scene load_steps=13 format=3 uid="uid://ccgfdjmtd58r3"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_bpknl"]
 [ext_resource type="PackedScene" uid="uid://h3jmmdgnwvnv" path="res://entities/player/player.tscn" id="2_x63vd"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="3_agpj3"]
 [ext_resource type="Script" path="res://addons/qodot/src/nodes/qodot_map.gd" id="4_5ibyp"]
 [ext_resource type="Resource" uid="uid://dl8y3css3pj2l" path="res://entities/qodot_fgd.tres" id="5_u0o0k"]
+[ext_resource type="Texture2D" uid="uid://l34rpm1diqcu" path="res://textures/BurnedEarth/BurnedEarth_1.png" id="6_ibpjn"]
 
 [sub_resource type="Environment" id="Environment_3l6tc"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_meya7"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hf0wg"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sxhvq"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lgu47"]
+albedo_texture = ExtResource("6_ibpjn")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_ve2nv"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_w5qim"]
 _surfaces = [{
 "aabb": AABB(-4, -1, -4, 8, 2.00001, 8),
-"attribute_data": PackedByteArray(0, 0, 128, 66, 0, 0, 128, 193, 0, 0, 128, 66, 0, 0, 128, 65, 0, 0, 128, 194, 0, 0, 128, 65, 0, 0, 128, 194, 0, 0, 128, 193, 0, 0, 128, 194, 0, 0, 128, 193, 0, 0, 128, 66, 0, 0, 128, 193, 0, 0, 128, 66, 0, 0, 128, 65, 0, 0, 128, 194, 0, 0, 128, 65, 0, 0, 128, 66, 0, 0, 128, 194, 0, 0, 128, 66, 0, 0, 128, 66, 0, 0, 128, 194, 0, 0, 128, 66, 0, 0, 128, 194, 0, 0, 128, 194, 0, 0, 128, 194, 0, 0, 128, 194, 0, 0, 128, 66, 0, 0, 128, 194, 0, 0, 128, 66, 0, 0, 128, 66, 0, 0, 128, 194, 0, 0, 128, 66, 0, 0, 128, 66, 0, 0, 128, 193, 0, 0, 128, 66, 0, 0, 128, 65, 0, 0, 128, 194, 0, 0, 128, 65, 0, 0, 128, 194, 0, 0, 128, 193, 0, 0, 128, 194, 0, 0, 128, 193, 0, 0, 128, 66, 0, 0, 128, 193, 0, 0, 128, 66, 0, 0, 128, 65, 0, 0, 128, 194, 0, 0, 128, 65),
+"attribute_data": PackedByteArray(0, 0, 72, 64, 0, 0, 72, 191, 0, 0, 72, 64, 0, 0, 72, 63, 0, 0, 72, 192, 0, 0, 72, 63, 0, 0, 72, 192, 0, 0, 72, 191, 0, 0, 72, 192, 0, 0, 72, 191, 0, 0, 72, 64, 0, 0, 72, 191, 0, 0, 72, 64, 0, 0, 72, 63, 0, 0, 72, 192, 0, 0, 72, 63, 0, 0, 72, 64, 0, 0, 72, 192, 0, 0, 72, 64, 0, 0, 72, 64, 0, 0, 72, 192, 0, 0, 72, 64, 0, 0, 72, 192, 0, 0, 72, 192, 0, 0, 72, 192, 0, 0, 72, 192, 0, 0, 72, 64, 0, 0, 72, 192, 0, 0, 72, 64, 0, 0, 72, 64, 0, 0, 72, 192, 0, 0, 72, 64, 0, 0, 72, 64, 0, 0, 72, 191, 0, 0, 72, 64, 0, 0, 72, 63, 0, 0, 72, 192, 0, 0, 72, 63, 0, 0, 72, 192, 0, 0, 72, 191, 0, 0, 72, 192, 0, 0, 72, 191, 0, 0, 72, 64, 0, 0, 72, 191, 0, 0, 72, 64, 0, 0, 72, 63, 0, 0, 72, 192, 0, 0, 72, 63),
 "format": 34359742487,
 "index_count": 36,
 "index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 20, 0, 22, 0, 23, 0),
-"material": SubResource("StandardMaterial3D_sxhvq"),
-"name": "__TB_empty",
+"material": SubResource("StandardMaterial3D_lgu47"),
+"name": "BurnedEarth/BurnedEarth_1",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 24,
 "vertex_data": PackedByteArray(0, 0, 128, 192, 0, 0, 128, 63, 0, 0, 128, 192, 0, 0, 128, 192, 0, 0, 128, 191, 0, 0, 128, 192, 0, 0, 128, 64, 0, 0, 128, 191, 0, 0, 128, 192, 0, 0, 128, 64, 0, 0, 128, 63, 0, 0, 128, 192, 0, 0, 128, 192, 0, 0, 128, 63, 0, 0, 128, 192, 0, 0, 128, 192, 0, 0, 128, 63, 0, 0, 128, 64, 0, 0, 128, 192, 0, 0, 128, 191, 0, 0, 128, 64, 0, 0, 128, 192, 0, 0, 128, 191, 0, 0, 128, 192, 0, 0, 128, 64, 0, 0, 128, 191, 0, 0, 128, 192, 0, 0, 128, 192, 0, 0, 128, 191, 0, 0, 128, 192, 0, 0, 128, 192, 0, 0, 128, 191, 0, 0, 128, 64, 0, 0, 128, 64, 0, 0, 128, 191, 0, 0, 128, 64, 0, 0, 128, 64, 0, 0, 128, 63, 0, 0, 128, 192, 0, 0, 128, 64, 0, 0, 128, 63, 0, 0, 128, 64, 0, 0, 128, 192, 0, 0, 128, 63, 0, 0, 128, 64, 0, 0, 128, 192, 0, 0, 128, 63, 0, 0, 128, 192, 0, 0, 128, 64, 0, 0, 128, 63, 0, 0, 128, 192, 0, 0, 128, 64, 0, 0, 128, 191, 0, 0, 128, 192, 0, 0, 128, 64, 0, 0, 128, 191, 0, 0, 128, 64, 0, 0, 128, 64, 0, 0, 128, 63, 0, 0, 128, 64, 0, 0, 128, 192, 0, 0, 128, 63, 0, 0, 128, 64, 0, 0, 128, 64, 0, 0, 128, 63, 0, 0, 128, 64, 0, 0, 128, 64, 0, 0, 128, 191, 0, 0, 128, 64, 0, 0, 128, 192, 0, 0, 128, 191, 0, 0, 128, 64, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191)
 }]
 
-[sub_resource type="ArrayOccluder3D" id="ArrayOccluder3D_t27de"]
+[sub_resource type="ArrayOccluder3D" id="ArrayOccluder3D_2mkjj"]
 vertices = PackedVector3Array(-4, 1, -4, -4, -1, -4, 4, -1, -4, 4, 1, -4, -4, 1, -4, -4, 1, 4, -4, -1, 4, -4, -1, -4, 4, -1, -4, -4, -1, -4, -4, -1, 4, 4, -1, 4, 4, 1, -4, 4, 1, 4, -4, 1, 4, -4, 1, -4, 4, 1, -4, 4, -1, -4, 4, -1, 4, 4, 1, 4, -4, 1, 4, 4, 1, 4, 4, -1, 4, -4, -1, 4)
 indices = PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 2, 3, 4, 5, 6, 4, 6, 7, 8, 9, 10, 8, 10, 11, 12, 13, 14, 12, 14, 15, 16, 17, 18, 16, 18, 19, 20, 21, 22, 20, 22, 23)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_y3tw2"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_awewc"]
 points = PackedVector3Array(-4, 1, -4, -4, -1, -4, 4, -1, -4, 4, 1, -4, -4, 1, 4, -4, -1, 4, 4, -1, 4, 4, 1, 4)
 
 [node name="Main" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.524506, 0.851407, 0, -0.851407, 0.524506, 0, 9.58608, 3.67154)
+transform = Transform3D(1, 0, 0, 0, 0.524506, 0.851407, 0, -0.851407, 0.524506, 0, 9.58609, 3.67154)
 fov = 74.9521
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
@@ -54,7 +56,7 @@ transform = Transform3D(0.038587, 0.928285, -0.369863, -0.0963231, 0.37187, 0.92
 shadow_enabled = true
 
 [node name="PhantomCamera3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.524506, 0.851407, 0, -0.851407, 0.524506, 0, 9.58608, 3.67154)
+transform = Transform3D(1, 0, 0, 0, 0.524506, 0.851407, 0, -0.851407, 0.524506, 0, 9.58609, 3.67154)
 script = ExtResource("3_agpj3")
 priority_override = false
 priority = 0
@@ -77,15 +79,15 @@ script = ExtResource("4_5ibyp")
 map_file = "/Users/emilienleroy/Documents/Dev/games/LittleDonjon2/maps/donjon.map"
 entity_fgd = ExtResource("5_u0o0k")
 texture_file_extensions = PackedStringArray("png", "jpg", "jpeg", "bmp")
-default_material = SubResource("StandardMaterial3D_meya7")
+default_material = SubResource("StandardMaterial3D_hf0wg")
 
 [node name="entity_0_worldspawn" type="StaticBody3D" parent="QodotMap"]
 
 [node name="entity_0_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_0_worldspawn"]
-mesh = SubResource("ArrayMesh_ve2nv")
+mesh = SubResource("ArrayMesh_w5qim")
 
 [node name="entity_0_occluder_instance" type="OccluderInstance3D" parent="QodotMap/entity_0_worldspawn"]
-occluder = SubResource("ArrayOccluder3D_t27de")
+occluder = SubResource("ArrayOccluder3D_2mkjj")
 
 [node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_y3tw2")
+shape = SubResource("ConvexPolygonShape3D_awewc")
