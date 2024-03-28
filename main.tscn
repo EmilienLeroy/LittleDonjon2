@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccgfdjmtd58r3"]
+
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_bpknl"]
+[ext_resource type="PackedScene" uid="uid://h3jmmdgnwvnv" path="res://entities/player/player.tscn" id="2_x63vd"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="3_agpj3"]
+
+[sub_resource type="Environment" id="Environment_3l6tc"]
+
+[node name="Main" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.524506, 0.851407, 0, -0.851407, 0.524506, 0, 5.95985, 3.67154)
+fov = 74.9521
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+script = ExtResource("1_bpknl")
+
+[node name="Player" parent="." instance=ExtResource("2_x63vd")]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.43372, -3.57139, -1.47769)
+use_collision = true
+size = Vector3(16.6809, 1, 13.8677)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3l6tc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.038587, 0.928285, -0.369863, -0.0963231, 0.37187, 0.923274, 0.994602, 9.05395e-09, 0.103765, 0, 2.99486, 0)
+shadow_enabled = true
+
+[node name="PhantomCamera3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.524506, 0.851407, 0, -0.851407, 0.524506, 0, 5.95985, 3.67154)
+script = ExtResource("3_agpj3")
+priority_override = false
+priority = 0
+follow_mode = 5
+follow_target = NodePath("../Player")
+follow_parameters/distance = 7.0
+follow_parameters/target_offset = Vector3(0, 0, 0)
+follow_parameters/damping = false
+follow_parameters/dead_zone_horizontal = 0.1
+follow_parameters/dead_zone_vertical = 0.1
+follow_parameters/viewfinder_in_play = false
+look_at_mode = 0
+tween_parameters = null
+tween_on_load = false
+inactive_update_mode = 0
+camera_3D_resource = null
