@@ -1,0 +1,14 @@
+[remap]
+
+importer="qodot.map"
+type="Resource"
+uid="uid://dvkr6ctt2ujei"
+path="res://.godot/imported/donjon.map-9c5ab8a21c8021310e1081f93693eb57.tres"
+
+[deps]
+
+source_file="res://maps/donjon.map"
+dest_files=["res://.godot/imported/donjon.map-9c5ab8a21c8021310e1081f93693eb57.tres"]
+
+[params]
+
