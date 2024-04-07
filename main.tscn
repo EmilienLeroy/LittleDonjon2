@@ -782,7 +782,7 @@ points = PackedVector3Array(0.0156181, 2.10742, -0.626953, -0.146133, 2.10742, -
 [node name="Main" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, -6.85689e-16, 9.02727e-17, 9.02727e-17, 0.258819, 0.965926, -6.85689e-16, -0.965926, 0.258819, 6.31909e-16, 10.3877, 1.81173)
+transform = Transform3D(1, -6.85689e-16, 9.02727e-17, 9.02727e-17, 0.258819, 0.965926, -6.85689e-16, -0.965926, 0.258819, 7.22182e-16, 11.3536, 2.07055)
 fov = 74.9521
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
@@ -800,13 +800,13 @@ visible = false
 shadow_enabled = true
 
 [node name="PhantomCamera3D" type="Node3D" parent="."]
-transform = Transform3D(1, -6.85689e-16, 9.02727e-17, 9.02727e-17, 0.258819, 0.965926, -6.85689e-16, -0.965926, 0.258819, 6.31909e-16, 10.3877, 1.81173)
+transform = Transform3D(1, -6.85689e-16, 9.02727e-17, 9.02727e-17, 0.258819, 0.965926, -6.85689e-16, -0.965926, 0.258819, 7.22182e-16, 11.3536, 2.07055)
 script = ExtResource("3_agpj3")
 priority_override = false
 priority = 0
 follow_mode = 5
 follow_target = NodePath("../Player")
-follow_parameters/distance = 7.0
+follow_parameters/distance = 8.0
 follow_parameters/target_offset = Vector3(0, 0, 0)
 follow_parameters/damping = false
 follow_parameters/dead_zone_horizontal = 0.1
