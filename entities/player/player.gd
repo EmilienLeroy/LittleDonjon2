@@ -1,11 +1,13 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
+const SPEED = 5.0;
+const DASH_SPEED = 10;
 const DEFAULT_ROTATION = -180;
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity");
+var current_direction: Vector3 = Vector3.ZERO;
 
 func _unhandled_key_input(event):
 	if event.is_action_pressed('attack'):
@@ -26,17 +28,17 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
 
+	if direction:
 		$Model.rotation.y = lerp_angle($Model.rotation.y, get_model_rotation(direction), 0.3);
 		$AnimationTree.set('parameters/Locomotion/transition_request', 'walk');
+		move_to(direction, SPEED);
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
 		$AnimationTree.set('parameters/Locomotion/transition_request', 'idle');
+		velocity.x = move_toward(velocity.x, 0, SPEED);
+		velocity.z = move_toward(velocity.z, 0, SPEED);
 
+	current_direction = direction;
 	move_and_slide()
 
 func get_model_rotation(direction: Vector3) -> float:
@@ -63,6 +65,9 @@ func get_model_rotation(direction: Vector3) -> float:
 
 		return 0;
 
+func move_to(direction: Vector3, speed: float):
+	velocity.x = direction.x * speed;
+	velocity.z = direction.z * speed;
 
 func attack():
 	if ($AnimationTree.get('parameters/Trigger Attack/active')):
@@ -75,4 +80,5 @@ func block():
 	pass;
 	
 func dash():
-	pass;
+	move_to(current_direction, SPEED * DASH_SPEED);
+	move_and_slide()
