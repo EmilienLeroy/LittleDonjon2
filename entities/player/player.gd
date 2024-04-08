@@ -29,8 +29,8 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
-		
-		$Model.rotation.y = get_model_rotation(direction);
+
+		$Model.rotation.y = lerp_angle($Model.rotation.y, get_model_rotation(direction), 0.3);
 		$AnimationTree.set('parameters/Locomotion/transition_request', 'walk');
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -68,6 +68,7 @@ func attack():
 	if ($AnimationTree.get('parameters/Trigger Attack/active')):
 		return;
 
+	$AnimationTree.set('parameters/AttackTimeSeek/seek_request', 0.6);
 	$AnimationTree.set('parameters/Trigger Attack/request', AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE);
 	
 func block():
