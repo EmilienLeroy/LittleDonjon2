@@ -782,14 +782,14 @@ points = PackedVector3Array(0.0156181, 2.10742, -0.626953, -0.146133, 2.10742, -
 [node name="Main" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, -6.85689e-16, 9.02727e-17, 9.02727e-17, 0.258819, 0.965926, -6.85689e-16, -0.965926, 0.258819, 7.22182e-16, 11.3536, 2.07055)
+transform = Transform3D(1, -6.85689e-16, 9.02727e-17, 9.02727e-17, 0.258819, 0.965926, -6.85689e-16, -0.965926, 0.258819, 7.22182e-16, 9.26201, 2.07055)
 fov = 74.9521
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 script = ExtResource("1_bpknl")
 
 [node name="Player" parent="." instance=ExtResource("2_x63vd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.62624, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5346, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_3l6tc")
@@ -800,7 +800,7 @@ visible = false
 shadow_enabled = true
 
 [node name="PhantomCamera3D" type="Node3D" parent="."]
-transform = Transform3D(1, -6.85689e-16, 9.02727e-17, 9.02727e-17, 0.258819, 0.965926, -6.85689e-16, -0.965926, 0.258819, 7.22182e-16, 11.3536, 2.07055)
+transform = Transform3D(1, -6.85689e-16, 9.02727e-17, 9.02727e-17, 0.258819, 0.965926, -6.85689e-16, -0.965926, 0.258819, 7.22182e-16, 9.26201, 2.07055)
 script = ExtResource("3_agpj3")
 priority_override = false
 priority = 0
