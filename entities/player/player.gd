@@ -81,4 +81,7 @@ func block():
 	
 func dash():
 	move_to(current_direction, SPEED * DASH_SPEED);
-	move_and_slide()
+	move_and_slide();
+	
+	$AnimationTree.set('parameters/DashTimeSeek/seek_request', 0.25);
+	$AnimationTree.set('parameters/Trigger Dash/request', AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE);
