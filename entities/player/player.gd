@@ -8,6 +8,10 @@ const DEFAULT_ROTATION = -180;
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity");
 var current_direction: Vector3 = Vector3.ZERO;
+var attack_combo = 0;
+
+func _ready():
+	$AnimationTree.connect('animation_finished', on_animation_finished);
 
 func _unhandled_key_input(event):
 	if event.is_action_pressed('attack'):
@@ -70,12 +74,19 @@ func move_to(direction: Vector3, speed: float):
 	velocity.z = direction.z * speed;
 
 func attack():
-	if ($AnimationTree.get('parameters/Trigger Attack/active')):
+	if ($AnimationTree.get('parameters/Trigger Attack/active') or $AnimationTree.get('parameters/Trigger Attack Reverse/active')):
 		return;
 
-	$AnimationTree.set('parameters/AttackTimeSeek/seek_request', 0.6);
-	$AnimationTree.set('parameters/Trigger Attack/request', AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE);
+	if (attack_combo == 0):
+		$AnimationTree.set('parameters/AttackTimeSeek/seek_request', 0.6);
+		$AnimationTree.set('parameters/Trigger Attack/request', AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE);
+		
+	if (attack_combo == 1):
+		$AnimationTree.set('parameters/AttackReverseTimeSeek/seek_request', 0.5);
+		$AnimationTree.set('parameters/Trigger Attack Reverse/request', AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE);
 	
+	attack_combo =+ 1;
+
 func block():
 	pass;
 	
@@ -85,3 +96,13 @@ func dash():
 	
 	$AnimationTree.set('parameters/DashTimeSeek/seek_request', 0.25);
 	$AnimationTree.set('parameters/Trigger Dash/request', AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE);
+	
+func on_animation_finished(animation: StringName):
+	if (animation != 'Attack' and animation != 'AttackReverse'):
+		return;
+
+	await get_tree().create_timer(1).timeout;
+	
+	if (!$AnimationTree.get('parameters/Trigger Attack Reverse/active') or !$AnimationTree.get('parameters/Trigger Attack/active')):
+		attack_combo = 0;
+
