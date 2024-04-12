@@ -1,11 +1,9 @@
 extends CharacterBody3D
 
-
 const SPEED = 5.0;
 const DASH_SPEED = 10;
 const DEFAULT_ROTATION = -180;
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity");
 var current_direction: Vector3 = Vector3.ZERO;
 var attack_combo = 0;
@@ -24,21 +22,18 @@ func _unhandled_key_input(event):
 		dash();
 
 func _physics_process(delta):
-	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
 	if direction:
 		$Model.rotation.y = lerp_angle($Model.rotation.y, get_model_rotation(direction), 0.3);
-		$AnimationTree.set('parameters/Locomotion/transition_request', 'walk');
+		transition_animation('Locomotion', 'walk');
 		move_to(direction, SPEED);
 	else:
-		$AnimationTree.set('parameters/Locomotion/transition_request', 'idle');
+		transition_animation('Locomotion', 'idle');
 		velocity.x = move_toward(velocity.x, 0, SPEED);
 		velocity.z = move_toward(velocity.z, 0, SPEED);
 
@@ -74,18 +69,23 @@ func move_to(direction: Vector3, speed: float):
 	velocity.z = direction.z * speed;
 
 func attack():
-	if ($AnimationTree.get('parameters/Trigger Attack/active') or $AnimationTree.get('parameters/Trigger Attack Reverse/active')):
+	if (
+		get_animation_state('TriggerAttack') 
+		or get_animation_state('TriggerAttackReverse')
+		or get_animation_state('TriggerAttackFinal')
+	):
 		return;
 
 	if (attack_combo == 0):
-		$AnimationTree.set('parameters/AttackTimeSeek/seek_request', 0.6);
-		$AnimationTree.set('parameters/Trigger Attack/request', AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE);
-		
+		seek_animation('AttackTimeSeek', 0.6);
+		fire_animation('TriggerAttack');
+
 	if (attack_combo == 1):
-		$AnimationTree.set('parameters/AttackReverseTimeSeek/seek_request', 0.5);
-		$AnimationTree.set('parameters/Trigger Attack Reverse/request', AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE);
-	
-	attack_combo =+ 1;
+		seek_animation('AttackReverseTimeSeek', 0.5);
+		fire_animation('TriggerAttackReverse');
+		
+	if (attack_combo == 2):
+		fire_animation('TriggerAttackFinal');
 
 func block():
 	pass;
@@ -93,16 +93,35 @@ func block():
 func dash():
 	move_to(current_direction, SPEED * DASH_SPEED);
 	move_and_slide();
-	
-	$AnimationTree.set('parameters/DashTimeSeek/seek_request', 0.25);
-	$AnimationTree.set('parameters/Trigger Dash/request', AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE);
-	
+	seek_animation('DashTimeSeek', 0.25);
+	fire_animation('TriggerDash');
+
 func on_animation_finished(animation: StringName):
-	if (animation != 'Attack' and animation != 'AttackReverse'):
+	if (animation == 'Attack' or animation == 'AttackReverse'):
+		attack_combo = attack_combo + 1
+		await get_tree().create_timer(0.5).timeout;
+		
+		if (
+			!get_animation_state('TriggerAttack')
+			and !get_animation_state('TriggerAttackReverse')
+			and !get_animation_state('TirggerAttackFinal')
+		):
+			attack_combo = 0;
+
+		return;
+	
+	if (animation == 'AttackSlash'):
+		attack_combo = 0;
 		return;
 
-	await get_tree().create_timer(1).timeout;
-	
-	if (!$AnimationTree.get('parameters/Trigger Attack Reverse/active') or !$AnimationTree.get('parameters/Trigger Attack/active')):
-		attack_combo = 0;
+func get_animation_state(animation: String):
+	return $AnimationTree.get('parameters/' +animation+ '/active');
 
+func fire_animation(animation: String):
+	$AnimationTree.set('parameters/'+ animation +'/request', AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE);
+	
+func seek_animation(animation: String, value: float):
+	$AnimationTree.set('parameters/'+ animation +'/seek_request', value);
+
+func transition_animation(animation: String, state: String):
+	$AnimationTree.set('parameters/'+ animation +'/transition_request', state);
