@@ -25,13 +25,17 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
+	var walk_speed = SPEED;
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
+	if attack_combo == 2 and get_animation_state('TriggerAttackFinal'):
+		walk_speed = SPEED / 1.5;
 
 	if direction:
 		$Model.rotation.y = lerp_angle($Model.rotation.y, get_model_rotation(direction), 0.3);
 		transition_animation('Locomotion', 'walk');
-		move_to(direction, SPEED);
+		move_to(direction, walk_speed);
 	else:
 		transition_animation('Locomotion', 'idle');
 		velocity.x = move_toward(velocity.x, 0, SPEED);
@@ -77,7 +81,6 @@ func attack():
 		return;
 
 	if (attack_combo == 0):
-		seek_animation('AttackTimeSeek', 0.6);
 		fire_animation('TriggerAttack');
 
 	if (attack_combo == 1):
@@ -85,7 +88,9 @@ func attack():
 		fire_animation('TriggerAttackReverse');
 		
 	if (attack_combo == 2):
+		seek_animation('AttackFinalTimeSeek', 0.3);
 		fire_animation('TriggerAttackFinal');
+		
 
 func block():
 	pass;
