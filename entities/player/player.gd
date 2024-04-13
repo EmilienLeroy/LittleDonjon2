@@ -92,12 +92,18 @@ func attack():
 		fire_animation('TriggerAttack');
 		attack_combo = attack_combo + 1;
 		
+		await get_tree().create_timer(0.15).timeout;
+		$AttackAudio.play();
+		
 		return;
 
 	if (attack_combo == 1):
 		seek_animation('AttackReverseTimeSeek', 0.5);
 		fire_animation('TriggerAttackReverse');
 		attack_combo = attack_combo + 1;
+		
+		await get_tree().create_timer(0.15).timeout;
+		$AttackReverseAudio.play()
 		
 		return;
 		
@@ -106,6 +112,11 @@ func attack():
 		seek_animation('AttackFinalTimeSeek', 0.3);
 		fire_animation('TriggerAttackFinal');
 		attack_combo = 0;
+		
+		await get_tree().create_timer(0.5).timeout;
+		$AttackFinalAudio.play();
+		
+		return;
 	
 
 func block():
@@ -116,6 +127,7 @@ func dash():
 	move_and_slide();
 	seek_animation('DashTimeSeek', 0.25);
 	fire_animation('TriggerDash');
+	$DashAudio.play();
 	
 
 func on_combo_timeout():
