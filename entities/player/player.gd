@@ -108,10 +108,14 @@ func attack():
 		return;
 		
 	if (attack_combo == 2):
+		attack_combo = 0;
+
+		if (get_transition_state('Locomotion') == 'idle'):
+			return;
+
 		$AttackTimer.stop();
 		seek_animation('AttackFinalTimeSeek', 0.3);
 		fire_animation('TriggerAttackFinal');
-		attack_combo = 0;
 		
 		await get_tree().create_timer(0.5).timeout;
 		$AttackFinalAudio.play();
@@ -123,6 +127,9 @@ func block():
 	pass;
 	
 func dash():
+	if (get_transition_state('Locomotion') == 'idle'):
+		return;
+	
 	move_to(current_direction, SPEED * DASH_SPEED);
 	move_and_slide();
 	seek_animation('DashTimeSeek', 0.25);
@@ -132,6 +139,9 @@ func dash():
 
 func on_combo_timeout():
 	attack_combo = 0;
+
+func get_transition_state(transition: String):
+	return $AnimationTree.get('parameters/'+ transition +'/current_state');
 
 func get_animation_state(animation: String):
 	return $AnimationTree.get('parameters/' +animation+ '/active');
