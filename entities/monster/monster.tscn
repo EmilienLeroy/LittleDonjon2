@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://gmix0lauhjih"]
+
+[ext_resource type="PackedScene" uid="uid://b38cr04bmxe3r" path="res://assets/monster/monster.glb" id="1_ulkyw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v18mx"]
+size = Vector3(0.370178, 0.391876, 0.363403)
+
+[node name="Monster" type="CharacterBody3D"]
+
+[node name="Model" parent="." instance=ExtResource("1_ulkyw")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00137329, 0.169022, 0.0194791)
+shape = SubResource("BoxShape3D_v18mx")
+
+[editable path="Model"]
