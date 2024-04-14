@@ -3724,7 +3724,7 @@ bones/39/scale = Vector3(1, 1, 1)
 bones/40/rotation = Quaternion(3.83989e-08, -1.10789e-07, 9.15352e-08, 1)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Model/Armature/Skeleton3D" index="35"]
-transform = Transform3D(-0.106392, -0.107878, 0.988455, 0.98889, 0.0923055, 0.116513, -0.103809, 0.98987, 0.0968587, -43.3871, -4.55968, -128.43)
+transform = Transform3D(-0.106393, -0.107877, 0.988455, 0.98889, 0.0923058, 0.116513, -0.103809, 0.98987, 0.0968582, -43.387, -4.55966, -128.43)
 bone_name = "mixamorig_RightHand"
 bone_idx = 22
 
