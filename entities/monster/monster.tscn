@@ -536,7 +536,7 @@ fadeout_time = 0.2
 animation = &"Walk"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_2lukx"]
-graph_offset = Vector2(-40.0521, 194.867)
+graph_offset = Vector2(225.948, 248.867)
 nodes/Attack/node = SubResource("AnimationNodeAnimation_787fh")
 nodes/Attack/position = Vector2(570, 330)
 nodes/Idle/node = SubResource("AnimationNodeAnimation_hnlyf")
@@ -562,38 +562,41 @@ script = ExtResource("1_r3f34")
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Model/Armature" index="0"]
-bones/0/position = Vector3(0, -0.00169571, 0)
-bones/0/rotation = Quaternion(0, -0.00189117, 0, 0.999998)
-bones/2/rotation = Quaternion(0.684053, 0.0717264, 0.23047, 0.688338)
-bones/3/rotation = Quaternion(0.703968, 0.127603, 0.123222, 0.687723)
-bones/4/rotation = Quaternion(0.0204983, 0.034745, 0.996146, -0.0778794)
+bones/0/position = Vector3(0, -0.000555191, 0)
+bones/2/rotation = Quaternion(0.686741, 0.202822, 0.200716, 0.668552)
+bones/3/rotation = Quaternion(0.700971, -0.00711435, 0.13439, 0.700377)
+bones/4/position = Vector3(0.816543, 0.272013, 0.838866)
+bones/4/rotation = Quaternion(0.0265712, 0.183924, 0.972485, -0.140496)
 bones/4/scale = Vector3(1, 1, 1)
-bones/5/rotation = Quaternion(0.629971, -0.126523, -0.0643425, 0.763537)
-bones/6/rotation = Quaternion(-0.0250127, 0.175233, 0.974208, 0.139956)
+bones/5/rotation = Quaternion(0.470774, -0.108703, -0.052526, 0.873955)
+bones/6/position = Vector3(-0.816543, 0.283258, 0.839225)
+bones/6/rotation = Quaternion(-0.0253403, 0.176426, 0.973992, 0.139897)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.501241, 0.0792267, 0.110461, 0.854564)
-bones/8/rotation = Quaternion(0.969705, -0.141837, -0.0330721, -0.196115)
+bones/7/rotation = Quaternion(0.498168, 0.078741, 0.110695, 0.856373)
+bones/8/position = Vector3(-0.79303, 0.295144, -0.721931)
+bones/8/rotation = Quaternion(0.97015, -0.14192, -0.0327632, -0.193894)
 bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(-0.784434, 0.118064, -0.0852964, 0.602867)
+bones/9/rotation = Quaternion(-0.784878, 0.118127, -0.0852094, 0.602289)
 bones/9/scale = Vector3(1, 1, 1)
-bones/10/rotation = Quaternion(0.966438, 0.137577, 0.0294991, -0.214943)
+bones/10/position = Vector3(0.809438, 0.306034, -0.710993)
+bones/10/rotation = Quaternion(0.969634, 0.13814, 0.0266678, -0.200039)
 bones/10/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.762958, -0.162878, 0.0127233, 0.625464)
-bones/12/rotation = Quaternion(0.0106186, 0.559652, 0.828099, 0.0304796)
-bones/13/rotation = Quaternion(0.0155213, 0.815486, 0.578535, 0.00626188)
+bones/11/rotation = Quaternion(-0.758154, -0.161568, 0.0131495, 0.631606)
+bones/12/rotation = Quaternion(-0.0180851, 0.532234, 0.846328, -0.0113487)
+bones/13/rotation = Quaternion(-0.0246891, 0.794207, 0.606284, -0.0323192)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Model/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.999993, 0, -0.00378233, 0, 1, 0, 0.00378233, 0, 0.999993, 0, -0.00169571, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.000555191, 0)
 bone_name = "Hips"
 bone_idx = 0
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="Model/Armature/Skeleton3D/BoneAttachment3D"]
+[node name="LeftLight" type="OmniLight3D" parent="Model/Armature/Skeleton3D/BoneAttachment3D"]
 transform = Transform3D(3.96801, 0, 0.504878, 0, 4, 0, -0.504878, 0, 3.96801, 0.604884, 1.51131, 1.71046)
 light_color = Color(0.54902, 0.0823529, 0, 1)
 shadow_enabled = true
 omni_range = 1.0
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Model/Armature/Skeleton3D/BoneAttachment3D"]
+[node name="RightLight" type="OmniLight3D" parent="Model/Armature/Skeleton3D/BoneAttachment3D"]
 transform = Transform3D(3.99199, 0, 0.252945, 0, 4, 0, -0.252945, 0, 3.99199, -0.476967, 1.51131, 1.75069)
 light_color = Color(0.54902, 0.0823529, 0, 1)
 shadow_enabled = true
@@ -610,9 +613,9 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeBlendTree_2lukx")
 anim_player = NodePath("../Model/AnimationPlayer")
-parameters/Locomotion/current_state = "walk"
+parameters/Locomotion/current_state = "idle"
 parameters/Locomotion/transition_request = ""
-parameters/Locomotion/current_index = 1
+parameters/Locomotion/current_index = 0
 parameters/TimeScale/scale = 3.0
 parameters/TriggerAttack/active = false
 parameters/TriggerAttack/internal_active = false

@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@onready var leftLight = $Model/Armature/Skeleton3D/BoneAttachment3D/LeftLight;
+@onready var rightLight = $Model/Armature/Skeleton3D/BoneAttachment3D/RightLight;
 
 const SPEED = 2.5;
 
@@ -23,10 +25,15 @@ func _physics_process(delta):
 		look_at(target.global_position, Vector3(0, 1, 0), true);
 		$AnimationHelper.transition_animation('Locomotion', 'walk');
 		
+		leftLight.light_energy = 2;
+		rightLight.light_energy = 2;
 		rotation.x = 0
 		velocity.x = direction.x * SPEED;
 		velocity.z = direction.z * SPEED;
 	else:
+		
+		leftLight.light_energy = 0.3;
+		rightLight.light_energy = 0.3;
 		$AnimationHelper.transition_animation('Locomotion', 'idle');
 		
 		velocity.x = move_toward(velocity.x, 0, SPEED)
