@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://iomnvt8smdme"]
+
+[ext_resource type="Script" path="res://utils/animation/AnimationHelper.gd" id="1_d6ai2"]
+
+[node name="AnimationHelper" type="Node3D"]
+script = ExtResource("1_d6ai2")

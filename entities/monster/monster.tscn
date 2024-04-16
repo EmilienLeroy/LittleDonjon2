@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://gmix0lauhjih"]
+[gd_scene load_steps=17 format=3 uid="uid://gmix0lauhjih"]
 
 [ext_resource type="Script" path="res://entities/monster/monster.gd" id="1_r3f34"]
 [ext_resource type="PackedScene" uid="uid://b38cr04bmxe3r" path="res://assets/monster/monster.glb" id="1_ulkyw"]
+[ext_resource type="PackedScene" uid="uid://iomnvt8smdme" path="res://utils/animation/AnimationHelper.tscn" id="3_88if4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v18mx"]
 size = Vector3(0.370178, 0.391876, 0.363403)
@@ -510,14 +511,11 @@ _data = {
 "Walk": SubResource("Animation_3usft")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dnwyk"]
-animation = &"Walk"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_787fh"]
+animation = &"Attack"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hnlyf"]
 animation = &"Idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_787fh"]
-animation = &"Attack"
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_2prd8"]
 xfade_time = 0.5
@@ -528,24 +526,34 @@ input_1/name = "walk"
 input_1/auto_advance = false
 input_1/reset = true
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_w4mva"]
+
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_4dmwb"]
 fadein_time = 0.2
 fadeout_time = 0.2
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dnwyk"]
+animation = &"Walk"
+
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_2lukx"]
-graph_offset = Vector2(-21.0506, 109.417)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_hnlyf")
-nodes/Animation/position = Vector2(330, 60)
-"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_dnwyk")
-"nodes/Animation 2/position" = Vector2(340, 180)
+graph_offset = Vector2(-40.0521, 194.867)
 nodes/Attack/node = SubResource("AnimationNodeAnimation_787fh")
 nodes/Attack/position = Vector2(570, 330)
-nodes/Transition/node = SubResource("AnimationNodeTransition_2prd8")
-nodes/Transition/position = Vector2(580, 110)
+nodes/Idle/node = SubResource("AnimationNodeAnimation_hnlyf")
+nodes/Idle/position = Vector2(330, 60)
+nodes/Locomotion/node = SubResource("AnimationNodeTransition_2prd8")
+nodes/Locomotion/position = Vector2(580, 110)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_w4mva")
+nodes/TimeScale/position = Vector2(420, 200)
 nodes/TriggerAttack/node = SubResource("AnimationNodeOneShot_4dmwb")
 nodes/TriggerAttack/position = Vector2(830, 120)
+nodes/Walk/node = SubResource("AnimationNodeAnimation_dnwyk")
+nodes/Walk/position = Vector2(230, 200)
 nodes/output/position = Vector2(1100, 90)
-node_connections = [&"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2", &"TriggerAttack", 0, &"Transition", &"TriggerAttack", 1, &"Attack", &"output", 0, &"TriggerAttack"]
+node_connections = [&"Locomotion", 0, &"Idle", &"Locomotion", 1, &"TimeScale", &"TimeScale", 0, &"Walk", &"TriggerAttack", 0, &"Locomotion", &"TriggerAttack", 1, &"Attack", &"output", 0, &"TriggerAttack"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6g1ra"]
+radius = 6.57404
 
 [node name="Monster" type="CharacterBody3D"]
 script = ExtResource("1_r3f34")
@@ -554,31 +562,28 @@ script = ExtResource("1_r3f34")
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Model/Armature" index="0"]
-bones/0/position = Vector3(0, -0.000421176, 0)
-bones/2/rotation = Quaternion(0.686772, 0.202923, 0.200613, 0.668522)
-bones/3/rotation = Quaternion(0.700939, -0.00727978, 0.134555, 0.700376)
-bones/4/position = Vector3(0.816543, 0.272054, 0.838952)
-bones/4/rotation = Quaternion(0.0266076, 0.184176, 0.972437, -0.140489)
+bones/0/position = Vector3(0, -0.00169571, 0)
+bones/0/rotation = Quaternion(0, -0.00189117, 0, 0.999998)
+bones/2/rotation = Quaternion(0.684053, 0.0717264, 0.23047, 0.688338)
+bones/3/rotation = Quaternion(0.703968, 0.127603, 0.123222, 0.687723)
+bones/4/rotation = Quaternion(0.0204983, 0.034745, 0.996146, -0.0778794)
 bones/4/scale = Vector3(1, 1, 1)
-bones/5/rotation = Quaternion(0.470774, -0.108703, -0.052526, 0.873955)
-bones/6/position = Vector3(-0.816543, 0.282964, 0.839225)
-bones/6/rotation = Quaternion(-0.0253281, 0.176341, 0.974008, 0.139899)
+bones/5/rotation = Quaternion(0.629971, -0.126523, -0.0643425, 0.763537)
+bones/6/rotation = Quaternion(-0.0250127, 0.175233, 0.974208, 0.139956)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.498168, 0.078741, 0.110695, 0.856373)
-bones/8/position = Vector3(-0.79303, 0.29493, -0.721931)
-bones/8/rotation = Quaternion(0.970167, -0.141923, -0.0327506, -0.193808)
+bones/7/rotation = Quaternion(0.501241, 0.0792267, 0.110461, 0.854564)
+bones/8/rotation = Quaternion(0.969705, -0.141837, -0.0330721, -0.196115)
 bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(-0.784878, 0.118127, -0.0852094, 0.602289)
+bones/9/rotation = Quaternion(-0.784434, 0.118064, -0.0852964, 0.602867)
 bones/9/scale = Vector3(1, 1, 1)
-bones/10/position = Vector3(0.809438, 0.305766, -0.710993)
-bones/10/rotation = Quaternion(0.969654, 0.138143, 0.0266545, -0.199945)
+bones/10/rotation = Quaternion(0.966438, 0.137577, 0.0294991, -0.214943)
 bones/10/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.758154, -0.161568, 0.0131495, 0.631606)
-bones/12/rotation = Quaternion(-0.0180945, 0.532164, 0.846372, -0.0113584)
-bones/13/rotation = Quaternion(-0.0247347, 0.794048, 0.60649, -0.0323366)
+bones/11/rotation = Quaternion(-0.762958, -0.162878, 0.0127233, 0.625464)
+bones/12/rotation = Quaternion(0.0106186, 0.559652, 0.828099, 0.0304796)
+bones/13/rotation = Quaternion(0.0155213, 0.815486, 0.578535, 0.00626188)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Model/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.000421176, 0)
+transform = Transform3D(0.999993, 0, -0.00378233, 0, 1, 0, 0.00378233, 0, 0.999993, 0, -0.00169571, 0)
 bone_name = "Hips"
 bone_idx = 0
 
@@ -605,11 +610,20 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeBlendTree_2lukx")
 anim_player = NodePath("../Model/AnimationPlayer")
-parameters/Transition/current_state = "idle"
-parameters/Transition/transition_request = ""
-parameters/Transition/current_index = 0
+parameters/Locomotion/current_state = "walk"
+parameters/Locomotion/transition_request = ""
+parameters/Locomotion/current_index = 1
+parameters/TimeScale/scale = 3.0
 parameters/TriggerAttack/active = false
 parameters/TriggerAttack/internal_active = false
 parameters/TriggerAttack/request = 0
+
+[node name="Detection" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Detection"]
+shape = SubResource("SphereShape3D_6g1ra")
+
+[node name="AnimationHelper" parent="." node_paths=PackedStringArray("animation_tree") instance=ExtResource("3_88if4")]
+animation_tree = NodePath("../AnimationTree")
 
 [editable path="Model"]
