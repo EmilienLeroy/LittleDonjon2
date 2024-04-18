@@ -135,7 +135,14 @@ func dash():
 	seek_animation('DashTimeSeek', 0.25);
 	fire_animation('TriggerDash');
 	$DashAudio.play();
+
+func take_damage(damage: float, from: Vector3):
+	var damage_direction = from.direction_to(global_position);
 	
+	velocity.x = damage_direction.x * SPEED * 7;
+	velocity.z = damage_direction.z * SPEED * 7;
+	
+	move_and_slide();
 
 func on_combo_timeout():
 	attack_combo = 0;

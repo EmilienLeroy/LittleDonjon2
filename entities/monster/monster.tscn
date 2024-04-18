@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://gmix0lauhjih"]
+[gd_scene load_steps=18 format=3 uid="uid://gmix0lauhjih"]
 
 [ext_resource type="Script" path="res://entities/monster/monster.gd" id="1_r3f34"]
 [ext_resource type="PackedScene" uid="uid://b38cr04bmxe3r" path="res://assets/monster/monster.glb" id="1_ulkyw"]
@@ -536,7 +536,7 @@ fadeout_time = 0.2
 animation = &"Walk"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_2lukx"]
-graph_offset = Vector2(225.948, 248.867)
+graph_offset = Vector2(34, 111)
 nodes/Attack/node = SubResource("AnimationNodeAnimation_787fh")
 nodes/Attack/position = Vector2(570, 330)
 nodes/Idle/node = SubResource("AnimationNodeAnimation_hnlyf")
@@ -555,6 +555,9 @@ node_connections = [&"Locomotion", 0, &"Idle", &"Locomotion", 1, &"TimeScale", &
 [sub_resource type="SphereShape3D" id="SphereShape3D_6g1ra"]
 radius = 6.57404
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_b2wwd"]
+size = Vector3(1, 1, 0.433167)
+
 [node name="Monster" type="CharacterBody3D"]
 script = ExtResource("1_r3f34")
 
@@ -562,31 +565,31 @@ script = ExtResource("1_r3f34")
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Model/Armature" index="0"]
-bones/0/position = Vector3(0, -0.000555191, 0)
-bones/2/rotation = Quaternion(0.686741, 0.202822, 0.200716, 0.668552)
-bones/3/rotation = Quaternion(0.700971, -0.00711435, 0.13439, 0.700377)
-bones/4/position = Vector3(0.816543, 0.272013, 0.838866)
-bones/4/rotation = Quaternion(0.0265712, 0.183924, 0.972485, -0.140496)
+bones/0/position = Vector3(0, -0.218591, 0)
+bones/2/rotation = Quaternion(0.616337, 0.032271, 0.363358, 0.697895)
+bones/3/rotation = Quaternion(0.698739, 0.262806, -0.145549, 0.649239)
+bones/4/position = Vector3(0.816543, 0.206159, 0.697749)
+bones/4/rotation = Quaternion(0.0392304, 0.271549, 0.951744, -0.137499)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(0.470774, -0.108703, -0.052526, 0.873955)
-bones/6/position = Vector3(-0.816543, 0.283258, 0.839225)
-bones/6/rotation = Quaternion(-0.0253403, 0.176426, 0.973992, 0.139897)
+bones/6/position = Vector3(-0.816543, 0.179919, 0.839225)
+bones/6/rotation = Quaternion(-0.0450041, 0.31333, 0.938942, 0.134862)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/rotation = Quaternion(0.498168, 0.078741, 0.110695, 0.856373)
-bones/8/position = Vector3(-0.79303, 0.295144, -0.721931)
-bones/8/rotation = Quaternion(0.97015, -0.14192, -0.0327632, -0.193894)
+bones/8/position = Vector3(-0.79303, 0.219988, -0.721931)
+bones/8/rotation = Quaternion(0.932133, -0.135726, -0.052852, -0.331532)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/rotation = Quaternion(-0.784878, 0.118127, -0.0852094, 0.602289)
 bones/9/scale = Vector3(1, 1, 1)
-bones/10/position = Vector3(0.809438, 0.306034, -0.710993)
-bones/10/rotation = Quaternion(0.969634, 0.13814, 0.0266678, -0.200039)
+bones/10/position = Vector3(0.809438, 0.21209, -0.710993)
+bones/10/rotation = Quaternion(0.926104, 0.132227, 0.0480626, -0.350053)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/rotation = Quaternion(-0.758154, -0.161568, 0.0131495, 0.631606)
-bones/12/rotation = Quaternion(-0.0180851, 0.532234, 0.846328, -0.0113487)
-bones/13/rotation = Quaternion(-0.0246891, 0.794207, 0.606284, -0.0323192)
+bones/12/rotation = Quaternion(-0.00263324, 0.641723, 0.766919, 0.00460181)
+bones/13/rotation = Quaternion(-0.0405936, 0.735055, 0.675709, -0.038266)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Model/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.000555191, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.218591, 0)
 bone_name = "Hips"
 bone_idx = 0
 
@@ -628,5 +631,13 @@ shape = SubResource("SphereShape3D_6g1ra")
 
 [node name="AnimationHelper" parent="." node_paths=PackedStringArray("animation_tree") instance=ExtResource("3_88if4")]
 animation_tree = NodePath("../AnimationTree")
+
+[node name="Attack" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Attack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.403379, 0.433334)
+shape = SubResource("BoxShape3D_b2wwd")
+
+[node name="AttackInterval" type="Timer" parent="."]
 
 [editable path="Model"]

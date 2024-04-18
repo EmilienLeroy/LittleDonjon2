@@ -4,6 +4,7 @@ extends CharacterBody3D
 @onready var rightLight = $Model/Armature/Skeleton3D/BoneAttachment3D/RightLight;
 
 const SPEED = 2.5;
+const DAMAGE = 10;
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var target: Node3D = null;
@@ -11,8 +12,11 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
 func _ready():
-	$Detection.connect('body_entered', on_body_entered);
-	$Detection.connect('body_exited', on_body_exited);
+	$Detection.connect('body_entered', on_body_entered_detection);
+	$Detection.connect('body_exited', on_body_exited_detection);
+	$Attack.connect('body_entered', on_body_entered_attack);
+	$Attack.connect('body_exited', on_body_exited_attack);
+	$AttackInterval.connect('timeout', on_timeout_attack);
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -41,14 +45,38 @@ func _physics_process(delta):
 
 	move_and_slide();
 
-func on_body_entered(body: Node3D):
+func attack(body: Node3D):
+	$AnimationHelper.fire_animation('TriggerAttack');
+	await get_tree().create_timer(0.3).timeout;
+	body.take_damage(DAMAGE, global_position);
+
+func on_timeout_attack():
+	if (!target):
+		return;
+
+	attack(target)
+
+func on_body_entered_detection(body: Node3D):
 	if (!body.is_in_group('player')):
 		return;
 	
 	target = body;
 
-func on_body_exited(body: Node3D):
+func on_body_exited_detection(body: Node3D):
 	if (!body.is_in_group('player')):
 		return;
 	
 	target = null;
+
+func on_body_entered_attack(body: Node3D):
+	if (!body.is_in_group('player')):
+		return;
+	
+	attack(body);
+	$AttackInterval.start();
+
+func on_body_exited_attack(body: Node3D):
+	if (!body.is_in_group('player')):
+		return;
+		
+	$AttackInterval.stop();
