@@ -25,20 +25,27 @@ func _physics_process(delta):
 	
 	if (target):
 		var direction = global_position.direction_to(target.global_position);
+		var look = global_transform.looking_at(target.global_position, Vector3(0, 1, 0), true);
 		
-		look_at(target.global_position, Vector3(0, 1, 0), true);
+		# Start the walk animation
 		$AnimationHelper.transition_animation('Locomotion', 'walk');
-		
-		leftLight.light_energy = 2;
-		rightLight.light_energy = 2;
+
+		# Increase eyes light
+		leftLight.light_energy = lerp(leftLight.light_energy, 2.0, 0.05);
+		rightLight.light_energy = lerp(rightLight.light_energy, 2.0, 0.05);
+
+		# Look at the target
+		global_transform = global_transform.interpolate_with(look, 0.15);
 		rotation.x = 0
+		
+		# Set velocity to move to the target
 		velocity.x = direction.x * SPEED;
 		velocity.z = direction.z * SPEED;
 	else:
-		
-		leftLight.light_energy = 0.3;
-		rightLight.light_energy = 0.3;
 		$AnimationHelper.transition_animation('Locomotion', 'idle');
+		
+		leftLight.light_energy = lerp(rightLight.light_energy, 0.3, 0.05);
+		rightLight.light_energy = lerp(rightLight.light_energy, 0.3, 0.05);
 		
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
