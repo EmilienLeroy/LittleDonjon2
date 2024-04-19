@@ -1836,3 +1836,33 @@
 "origin" "-271 48 30"
 "_tb_group" "3"
 }
+// entity 17
+{
+"classname" "Monster"
+"origin" "-249.798 -69.6569 0"
+"angle" "180"
+}
+// entity 18
+{
+"classname" "Monster"
+"origin" "-264 104 0"
+"angle" "180"
+}
+// entity 19
+{
+"classname" "Monster"
+"origin" "-240 -256 0"
+"angle" "180"
+}
+// entity 20
+{
+"classname" "Monster"
+"origin" "-384 -280 0"
+"angle" "180"
+}
+// entity 21
+{
+"classname" "Player"
+"origin" "24 0 24"
+"angle" "180"
+}
