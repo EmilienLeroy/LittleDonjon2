@@ -7,6 +7,7 @@ const DEFAULT_ROTATION = -180;
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity");
 var current_direction: Vector3 = Vector3.ZERO;
 var attack_combo = 0;
+var open_target: OpenEntity;
 
 func _ready():
 	$AttackTimer.connect('timeout', on_combo_timeout);
@@ -20,6 +21,9 @@ func _unhandled_key_input(event):
 		
 	if event.is_action_pressed('dash'):
 		dash();
+		
+	if event.is_action_pressed('action'):
+		try_open_door();
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -143,6 +147,12 @@ func take_damage(damage: float, from: Vector3):
 	velocity.z = damage_direction.z * SPEED * 7;
 	
 	move_and_slide();
+
+func try_open_door():
+	if (!open_target):
+		return;
+		
+	open_target.open();
 
 func on_combo_timeout():
 	attack_combo = 0;
