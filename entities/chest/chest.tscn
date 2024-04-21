@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckakamyolbqww"]
+
+[ext_resource type="PackedScene" uid="uid://d12t50ig37204" path="res://assets/chest/chest.glb" id="1_pir7j"]
+
+[node name="Chest" type="Node3D"]
+
+[node name="Model" parent="." instance=ExtResource("1_pir7j")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
+
+[node name="Cube_001" parent="Model" index="1"]
+transform = Transform3D(0.999995, 0.00308004, 4.13821e-10, -0.00308004, 0.999995, -6.27047e-13, -4.13821e-10, -6.47541e-13, 1, -1.01482, 2.04398, -0.0419722)
+
+[node name="Cylinder" parent="Model" index="3"]
+visible = false
+
+[node name="Cube_003" parent="Model" index="4"]
+visible = false
+
+[editable path="Model"]

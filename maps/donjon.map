@@ -1916,3 +1916,9 @@
 "classname" "Torch"
 "origin" "-192 336 32"
 }
+// entity 30
+{
+"classname" "CHest"
+"origin" "-328 0 -8"
+"angle" "90"
+}
