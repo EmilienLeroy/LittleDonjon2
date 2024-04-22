@@ -8,6 +8,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity");
 var current_direction: Vector3 = Vector3.ZERO;
 var attack_combo = 0;
 var open_target: OpenEntity;
+var chest_target: ChestEntity;
+var keys: Array[String] = [];
 
 func _ready():
 	$AttackTimer.connect('timeout', on_combo_timeout);
@@ -24,6 +26,7 @@ func _unhandled_key_input(event):
 		
 	if event.is_action_pressed('action'):
 		try_open_door();
+		try_open_chest();
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -152,7 +155,18 @@ func try_open_door():
 	if (!open_target):
 		return;
 		
-	open_target.open();
+	open_target.open(keys);
+
+func try_open_chest():
+	if (!chest_target):
+		return;
+	
+	var key = chest_target.open();
+
+	if (!key):
+		return;
+		
+	keys.push_back(key);
 
 func on_combo_timeout():
 	attack_combo = 0;

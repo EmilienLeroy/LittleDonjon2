@@ -1876,6 +1876,7 @@
 {
 "classname" "Open"
 "target" "door1"
+"key_name" "door1"
 // brush 0
 {
 ( -264 176 16 ) ( -264 152 16 ) ( -264 152 -8 ) __TB_empty [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
@@ -1921,4 +1922,5 @@
 "classname" "CHest"
 "origin" "-328 0 -8"
 "angle" "90"
+"key_name" "door1"
 }

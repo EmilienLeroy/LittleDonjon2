@@ -1,8 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckakamyolbqww"]
+[gd_scene load_steps=5 format=3 uid="uid://ckakamyolbqww"]
 
+[ext_resource type="Script" path="res://entities/chest/chest.gd" id="1_7teon"]
 [ext_resource type="PackedScene" uid="uid://d12t50ig37204" path="res://assets/chest/chest.glb" id="1_pir7j"]
 
-[node name="Chest" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_k8t2p"]
+size = Vector3(0.73877, 1.06683, 1.37)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7vsmb"]
+size = Vector3(1.16907, 1, 1.39136)
+
+[node name="Chest" type="StaticBody3D"]
+script = ExtResource("1_7teon")
 
 [node name="Model" parent="." instance=ExtResource("1_pir7j")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
@@ -15,5 +23,15 @@ visible = false
 
 [node name="Cube_003" parent="Model" index="4"]
 visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00512695, 0.554787, -0.00250244)
+shape = SubResource("BoxShape3D_k8t2p")
+
+[node name="Open" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Open"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.964762, 0.583398, -0.00109863)
+shape = SubResource("BoxShape3D_7vsmb")
 
 [editable path="Model"]

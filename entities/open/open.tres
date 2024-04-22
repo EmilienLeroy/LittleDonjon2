@@ -22,6 +22,7 @@ description = "Open doors"
 qodot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {
+"key_name": "",
 "target": ""
 }
 class_property_descriptions = {}

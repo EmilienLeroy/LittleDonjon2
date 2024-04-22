@@ -11,7 +11,9 @@ classname = "CHest"
 description = "A chest"
 qodot_internal = false
 base_classes = Array[Resource]([])
-class_properties = {}
+class_properties = {
+"key_name": ""
+}
 class_property_descriptions = {}
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
