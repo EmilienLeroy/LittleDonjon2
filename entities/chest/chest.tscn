@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckakamyolbqww"]
+[gd_scene load_steps=8 format=3 uid="uid://ckakamyolbqww"]
 
 [ext_resource type="Script" path="res://entities/chest/chest.gd" id="1_7teon"]
 [ext_resource type="PackedScene" uid="uid://d12t50ig37204" path="res://assets/chest/chest.glb" id="1_pir7j"]
@@ -8,6 +8,43 @@ size = Vector3(0.73877, 1.06683, 1.37)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7vsmb"]
 size = Vector3(1.16907, 1, 1.39136)
+
+[sub_resource type="Animation" id="Animation_dqfbv"]
+resource_name = "open"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpotLight3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 1.3, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_tcav4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpotLight3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kpkfw"]
+_data = {
+"RESET": SubResource("Animation_tcav4"),
+"open": SubResource("Animation_dqfbv")
+}
 
 [node name="Chest" type="StaticBody3D"]
 process_mode = 3
@@ -34,5 +71,18 @@ shape = SubResource("BoxShape3D_k8t2p")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Open"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.964762, 0.583398, -0.00109863)
 shape = SubResource("BoxShape3D_7vsmb")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.970896, 0.00838346, -0.239353, -0.239499, 0.0339854, -0.970302, -1.7245e-10, 0.999387, 0.0350041, 0, -0.604305, 0)
+light_color = Color(6, 4, 3, 1)
+light_energy = 0.0
+spot_attenuation = 1.1487
+spot_angle = 62.09
+spot_angle_attenuation = 1.23114
+
+[node name="LightAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kpkfw")
+}
 
 [editable path="Model"]

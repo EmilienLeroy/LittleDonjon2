@@ -14,6 +14,7 @@ func open():
 		return;
 		
 	is_open = true;
+	$LightAnimation.play('open');
 	$Model/AnimationPlayer.play('open');
 
 	return properties.get('key_name');
