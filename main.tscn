@@ -1,4 +1,4 @@
-[gd_scene load_steps=226 format=3 uid="uid://ccgfdjmtd58r3"]
+[gd_scene load_steps=227 format=3 uid="uid://ccgfdjmtd58r3"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_bpknl"]
 [ext_resource type="PackedScene" uid="uid://h3jmmdgnwvnv" path="res://entities/player/player.tscn" id="2_x63vd"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://entities/open/open.gd" id="15_ajgvp"]
 [ext_resource type="Script" path="res://addons/qodot/game_definitions/fgd/solid_classes/mover.gd" id="15_c4whp"]
 [ext_resource type="PackedScene" uid="uid://ckakamyolbqww" path="res://entities/chest/chest.tscn" id="17_lusx7"]
+[ext_resource type="AudioStream" uid="uid://cgarx0n5m01bp" path="res://assets/sounds/Donjon1.mp3" id="18_v1no4"]
 
 [sub_resource type="Environment" id="Environment_3l6tc"]
 background_mode = 1
@@ -1527,5 +1528,9 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 21, 2,
 
 [node name="entity_30_CHest" parent="QodotMap" instance=ExtResource("17_lusx7")]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, -0.5, -20.5)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_v1no4")
+volume_db = -30.0
 
 [connection signal="trigger" from="QodotMap/entity_23_Open" to="QodotMap/entity_22_mover" method="use"]
