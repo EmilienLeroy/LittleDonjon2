@@ -10,6 +10,7 @@ size = Vector3(0.73877, 1.06683, 1.37)
 size = Vector3(1.16907, 1, 1.39136)
 
 [node name="Chest" type="StaticBody3D"]
+process_mode = 3
 script = ExtResource("1_7teon")
 
 [node name="Model" parent="." instance=ExtResource("1_pir7j")]
