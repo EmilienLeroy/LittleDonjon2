@@ -518,7 +518,7 @@ animation = &"Attack"
 animation = &"Idle"
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_2prd8"]
-xfade_time = 0.5
+xfade_time = 0.3
 input_0/name = "idle"
 input_0/auto_advance = false
 input_0/reset = true
@@ -536,7 +536,7 @@ fadeout_time = 0.2
 animation = &"Walk"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_2lukx"]
-graph_offset = Vector2(34, 111)
+graph_offset = Vector2(-199, -10)
 nodes/Attack/node = SubResource("AnimationNodeAnimation_787fh")
 nodes/Attack/position = Vector2(570, 330)
 nodes/Idle/node = SubResource("AnimationNodeAnimation_hnlyf")
@@ -565,31 +565,31 @@ script = ExtResource("1_r3f34")
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Model/Armature" index="0"]
-bones/0/position = Vector3(0, -0.135108, 0)
-bones/2/rotation = Quaternion(0.648014, 0.0983015, 0.303279, 0.691691)
-bones/3/rotation = Quaternion(0.71267, 0.162383, -0.0390253, 0.68133)
-bones/4/position = Vector3(0.816543, 0.231374, 0.751781)
-bones/4/rotation = Quaternion(0.0344279, 0.238307, 0.960607, -0.13878)
+bones/0/position = Vector3(0, -0.074186, 0)
+bones/2/rotation = Quaternion(0.667565, 0.14624, 0.257407, 0.683164)
+bones/3/rotation = Quaternion(0.712583, 0.085497, 0.0405839, 0.695176)
+bones/4/position = Vector3(0.816543, 0.249774, 0.79121)
+bones/4/rotation = Quaternion(0.0308808, 0.213754, 0.966366, -0.139612)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(0.470774, -0.108703, -0.052526, 0.873955)
-bones/6/position = Vector3(-0.816543, 0.219396, 0.839225)
-bones/6/rotation = Quaternion(-0.0375651, 0.261538, 0.954665, 0.137121)
+bones/6/position = Vector3(-0.816543, 0.248311, 0.839225)
+bones/6/rotation = Quaternion(-0.0320537, 0.223166, 0.964357, 0.138513)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/rotation = Quaternion(0.498168, 0.078741, 0.110695, 0.856373)
-bones/8/position = Vector3(-0.79303, 0.248698, -0.721931)
-bones/8/rotation = Quaternion(0.949029, -0.138439, -0.0452712, -0.279517)
+bones/8/position = Vector3(-0.79303, 0.269728, -0.721931)
+bones/8/rotation = Quaternion(0.95955, -0.140155, -0.0396394, -0.240935)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/rotation = Quaternion(-0.784878, 0.118127, -0.0852094, 0.602289)
 bones/9/scale = Vector3(1, 1, 1)
-bones/10/position = Vector3(0.809438, 0.247978, -0.710993)
-bones/10/rotation = Quaternion(0.945557, 0.134888, 0.0399879, -0.293474)
+bones/10/position = Vector3(0.809438, 0.274264, -0.710993)
+bones/10/rotation = Quaternion(0.957604, 0.136524, 0.0339873, -0.251397)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/rotation = Quaternion(-0.758154, -0.161568, 0.0131495, 0.631606)
-bones/12/rotation = Quaternion(-0.00856898, 0.601134, 0.799101, -0.00150917)
-bones/13/rotation = Quaternion(-0.0345528, 0.758424, 0.649848, -0.0360308)
+bones/12/rotation = Quaternion(-0.0128943, 0.570407, 0.82124, -0.00597494)
+bones/13/rotation = Quaternion(-0.0300965, 0.77495, 0.630369, -0.0343634)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Model/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.135108, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.074186, 0)
 bone_name = "Hips"
 bone_idx = 0
 

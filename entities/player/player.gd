@@ -57,7 +57,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED);
 		velocity.z = move_toward(velocity.z, 0, SPEED);
 
-	current_direction = direction;
+	current_direction = direction;	
 	move_and_slide()
 
 func get_model_rotation(direction: Vector3) -> float:
@@ -154,6 +154,7 @@ func take_damage(damage: float, from: Vector3):
 	velocity.x = damage_direction.x * SPEED * 7;
 	velocity.z = damage_direction.z * SPEED * 7;
 	
+	helper.fire_animation('TriggerDamage');
 	move_and_slide();
 
 func try_open_door():

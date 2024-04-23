@@ -9,6 +9,7 @@ const DAMAGE = 10;
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var target: Node3D = null;
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var is_attack = false;
 
 
 func _ready():
@@ -28,8 +29,13 @@ func _physics_process(delta):
 		var look = global_transform.looking_at(target.global_position, Vector3(0, 1, 0), true);
 		
 		# Start the walk animation
-		$AnimationHelper.transition_animation('Locomotion', 'walk');
+		if (is_attack):
+			$AnimationHelper.transition_animation('Locomotion', 'idle');
+			return;
 
+
+		$AnimationHelper.transition_animation('Locomotion', 'walk');
+		
 		# Increase eyes light
 		leftLight.light_energy = lerp(leftLight.light_energy, 2.0, 0.05);
 		rightLight.light_energy = lerp(rightLight.light_energy, 2.0, 0.05);
@@ -49,13 +55,23 @@ func _physics_process(delta):
 		
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+	
+	if (is_attack):
+		return;
 
 	move_and_slide();
 
 func attack(body: Node3D):
+	if (is_attack):
+		return;
+	
 	$AnimationHelper.fire_animation('TriggerAttack');
 	await get_tree().create_timer(0.3).timeout;
+	
+	is_attack = true;
 	body.take_damage(DAMAGE, global_position);
+	await get_tree().create_timer(1).timeout;
+	is_attack = false;
 
 func on_timeout_attack():
 	if (!target):
