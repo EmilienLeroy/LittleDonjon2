@@ -6,10 +6,11 @@ extends CharacterBody3D
 const SPEED = 2.5;
 const DAMAGE = 10;
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
+var life = 20.0;
 var target: Node3D = null;
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var is_attack = false;
+var is_taking_damage = false;
 
 
 func _ready():
@@ -29,10 +30,9 @@ func _physics_process(delta):
 		var look = global_transform.looking_at(target.global_position, Vector3(0, 1, 0), true);
 		
 		# Start the walk animation
-		if (is_attack):
+		if (is_attack or is_taking_damage):
 			$AnimationHelper.transition_animation('Locomotion', 'idle');
 			return;
-
 
 		$AnimationHelper.transition_animation('Locomotion', 'walk');
 		
@@ -72,6 +72,27 @@ func attack(body: Node3D):
 	body.take_damage(DAMAGE, global_position);
 	await get_tree().create_timer(1).timeout;
 	is_attack = false;
+
+func take_damage(damage: float, from: Vector3):
+	if (is_taking_damage):
+		return;
+
+	var damage_direction = from.direction_to(global_position);
+	
+	is_taking_damage = true;
+	life = life - damage;
+	velocity.x = damage_direction.x * SPEED * 15;
+	velocity.z = damage_direction.z * SPEED * 15;
+	
+	move_and_slide();
+	
+	if life <= 0:
+		await get_tree().create_timer(0.5).timeout;
+		queue_free();
+	
+	await get_tree().create_timer(1).timeout;
+	is_taking_damage = false;
+	
 
 func on_timeout_attack():
 	if (!target):

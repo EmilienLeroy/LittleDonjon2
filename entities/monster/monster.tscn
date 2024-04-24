@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://gmix0lauhjih"]
+[gd_scene load_steps=19 format=3 uid="uid://gmix0lauhjih"]
 
 [ext_resource type="Script" path="res://entities/monster/monster.gd" id="1_r3f34"]
 [ext_resource type="PackedScene" uid="uid://b38cr04bmxe3r" path="res://assets/monster/monster.glb" id="1_ulkyw"]
@@ -557,6 +557,9 @@ radius = 6.57404
 [sub_resource type="BoxShape3D" id="BoxShape3D_b2wwd"]
 size = Vector3(1, 1, 0.433167)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_483x4"]
+size = Vector3(0.91748, 0.967896, 0.902588)
+
 [node name="Monster" type="CharacterBody3D"]
 script = ExtResource("1_r3f34")
 
@@ -564,31 +567,31 @@ script = ExtResource("1_r3f34")
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Model/Armature" index="0"]
-bones/0/position = Vector3(0, -0.194933, 0)
-bones/2/rotation = Quaternion(0.625838, 0.0509321, 0.346738, 0.696782)
-bones/3/rotation = Quaternion(0.704244, 0.235261, -0.116025, 0.659721)
-bones/4/position = Vector3(0.816543, 0.213304, 0.713061)
-bones/4/rotation = Quaternion(0.0378878, 0.262255, 0.954346, -0.137875)
+bones/0/position = Vector3(0, -0.134961, 0)
+bones/2/rotation = Quaternion(0.648065, 0.0984172, 0.30317, 0.691674)
+bones/3/rotation = Quaternion(0.71268, 0.162203, -0.0388365, 0.681373)
+bones/4/position = Vector3(0.816543, 0.231418, 0.751876)
+bones/4/rotation = Quaternion(0.0344194, 0.238248, 0.960621, -0.138782)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(0.470774, -0.108703, -0.052526, 0.873955)
-bones/6/position = Vector3(-0.816543, 0.191001, 0.839225)
-bones/6/rotation = Quaternion(-0.0429126, 0.298769, 0.943676, 0.135542)
+bones/6/position = Vector3(-0.816543, 0.219466, 0.839225)
+bones/6/rotation = Quaternion(-0.0375519, 0.261446, 0.95469, 0.137124)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/rotation = Quaternion(0.498168, 0.078741, 0.110695, 0.856373)
-bones/8/position = Vector3(-0.79303, 0.228048, -0.721931)
-bones/8/rotation = Quaternion(0.937203, -0.136536, -0.0507232, -0.316916)
+bones/8/position = Vector3(-0.79303, 0.248749, -0.721931)
+bones/8/rotation = Quaternion(0.949056, -0.138443, -0.0452578, -0.279425)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/rotation = Quaternion(-0.784878, 0.118127, -0.0852094, 0.602289)
 bones/9/scale = Vector3(1, 1, 1)
-bones/10/position = Vector3(0.809438, 0.222164, -0.710993)
-bones/10/rotation = Quaternion(0.931951, 0.133029, 0.0457961, -0.334177)
+bones/10/position = Vector3(0.809438, 0.248041, -0.710993)
+bones/10/rotation = Quaternion(0.945589, 0.134893, 0.0399735, -0.293374)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/rotation = Quaternion(-0.758154, -0.161568, 0.0131495, 0.631606)
-bones/12/rotation = Quaternion(-0.00431389, 0.630415, 0.776241, 0.00287359)
-bones/13/rotation = Quaternion(-0.038904, 0.741704, 0.668539, -0.0376438)
+bones/12/rotation = Quaternion(-0.00857942, 0.601061, 0.799156, -0.00151994)
+bones/13/rotation = Quaternion(-0.0345421, 0.758464, 0.649801, -0.0360268)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Model/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.194933, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.134961, 0)
 bone_name = "Hips"
 bone_idx = 0
 
@@ -636,6 +639,12 @@ animation_tree = NodePath("../AnimationTree")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Attack"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.403379, 0.433334)
 shape = SubResource("BoxShape3D_b2wwd")
+
+[node name="Damage" type="Area3D" parent="." groups=["monster"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Damage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00282574, 0.411804, 0.0123291)
+shape = SubResource("BoxShape3D_483x4")
 
 [node name="AttackInterval" type="Timer" parent="."]
 

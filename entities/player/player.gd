@@ -105,7 +105,7 @@ func attack():
 	):
 		return;
 
-	helper.fade_out_animation('TriggerAttackFinal')
+	helper.fade_out_animation('TriggerAttackFinal');
 
 	if (attack_combo == 0):
 		$AttackTimer.start(0);
@@ -115,6 +115,7 @@ func attack():
 		
 		await get_tree().create_timer(0.15).timeout;
 		$AttackAudio.play();
+		make_damage(10);
 		
 		return;
 
@@ -124,7 +125,8 @@ func attack():
 		attack_combo = attack_combo + 1;
 		
 		await get_tree().create_timer(0.15).timeout;
-		$AttackReverseAudio.play()
+		$AttackReverseAudio.play();
+		make_damage(10);
 		
 		return;
 		
@@ -140,9 +142,17 @@ func attack():
 		
 		await get_tree().create_timer(0.5).timeout;
 		$AttackFinalAudio.play();
+		await get_tree().create_timer(0.4).timeout;
+		make_damage(20);
 		
 		return;
+
+func make_damage(damage: int):
+	var hitboxies = $Model/AttackZone.get_overlapping_areas();
 	
+	for hitbox in hitboxies:
+		if (hitbox.is_in_group('monster')):
+			hitbox.get_parent().take_damage(damage, global_position);
 
 func block():
 	pass;
