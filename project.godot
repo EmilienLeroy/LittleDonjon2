@@ -28,7 +28,7 @@ window/stretch/scale=2.0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/panku_console/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/qodot/plugin.cfg")
+enabled=PackedStringArray("res://addons/GPUTrail-main/plugin.cfg", "res://addons/panku_console/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/qodot/plugin.cfg")
 
 [filesystem]
 

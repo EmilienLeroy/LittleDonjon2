@@ -6,6 +6,7 @@ signal end_open_chest
 @onready var helper = $AnimationHelper;
 @onready var key_model = $Model/Armature/Skeleton3D/BoneAttachment3D/Key;
 @onready var sword_model = $Model/Armature/Skeleton3D/BoneAttachment3D/Sword;
+@onready var sword_trail = $Model/Armature/Skeleton3D/BoneAttachment3D/Sword/Trail;
 
 const SPEED = 5.0;
 const DASH_SPEED = 10;
@@ -67,7 +68,8 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED);
 
 	current_direction = direction;	
-	move_and_slide()
+	move_and_slide();
+	update_trail();
 
 func get_model_rotation(direction: Vector3) -> float:
 		if direction.z == 1:
@@ -216,5 +218,17 @@ func try_resume_chest():
 	is_opening_chest = false;
 	get_tree().paused = false;
 
+func update_trail():
+	if (is_attacking()):
+		if (sword_trail.length != 5):
+			sword_trail.length = 5;
+	else:
+		sword_trail.length = 1;
+
 func on_combo_timeout():
 	attack_combo = 0;
+
+func is_attacking():
+	return ((helper.get_animation_state('TriggerAttack') and helper.get_animation_time('Attack') < 0.8) 
+		or (helper.get_animation_state('TriggerAttackReverse') and helper.get_animation_time('AttackReverse') < 1.2)
+		or (helper.get_animation_state('TriggerAttackFinal') and helper.get_animation_time('AttackFinal') < 1.2));
