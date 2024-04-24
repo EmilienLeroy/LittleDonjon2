@@ -4,6 +4,8 @@ signal start_open_chest
 signal end_open_chest
  
 @onready var helper = $AnimationHelper;
+@onready var key_model = $Model/Armature/Skeleton3D/BoneAttachment3D/Key;
+@onready var sword_model = $Model/Armature/Skeleton3D/BoneAttachment3D/Sword;
 
 const SPEED = 5.0;
 const DASH_SPEED = 10;
@@ -15,8 +17,10 @@ var attack_combo = 0;
 var open_target: OpenEntity;
 var chest_target: ChestEntity;
 var keys: Array[String] = [];
+var is_opening_chest = false;
 
 func _ready():
+	$AnimationKey.play('turn');
 	$AttackTimer.connect('timeout', on_combo_timeout);
 
 func _unhandled_key_input(event):
@@ -30,12 +34,17 @@ func _unhandled_key_input(event):
 		dash();
 		
 	if event.is_action_pressed('action'):
+		try_resume_chest();
 		try_open_door();
 		try_open_chest();
 
 func _physics_process(delta):
 	if not is_on_floor():
-		velocity.y -= gravity * delta
+		velocity.y -= gravity * delta;
+
+	if (is_opening_chest):
+		$Model.rotation.y = lerp_angle($Model.rotation.y, get_model_rotation(Vector3(0, 0, 1)), 0.3);
+		return;
 
 	var walk_speed = SPEED;
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -171,15 +180,30 @@ func try_open_chest():
 
 	if (!key):
 		return;
-		
-	keys.push_back(key);
 	
+	keys.push_back(key);
 	start_open_chest.emit();
 	get_tree().paused = true;
 	
-	await get_tree().create_timer(2).timeout;
+	await get_tree().create_timer(0.5).timeout;
 	
+	is_opening_chest = true;
+	sword_model.visible = false;
+	key_model.visible = true;
+	
+	helper.transition_animation('Locomotion', 'chest');
+
+
+func try_resume_chest():
+	var is_playing_anim = helper.get_transition_state('Locomotion') == 'chest' and helper.get_animation_time('Chest') < 1
+	
+	if (!is_opening_chest or is_playing_anim):
+		return;
+		
+	sword_model.visible = true;
+	key_model.visible = false;
 	end_open_chest.emit();
+	is_opening_chest = false;
 	get_tree().paused = false;
 
 func on_combo_timeout():
