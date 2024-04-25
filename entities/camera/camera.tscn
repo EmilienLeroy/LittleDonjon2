@@ -7,6 +7,7 @@
 script = ExtResource("1_sn7vh")
 
 [node name="Camera" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.802641, 0.596463, 0, -0.596463, 0.802641, 0, 0, 0)
 script = ExtResource("1_yq00c")
 priority_override = false
 priority = 0
