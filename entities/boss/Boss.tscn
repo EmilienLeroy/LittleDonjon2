@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfmni3omdqi7x"]
+
+[ext_resource type="PackedScene" uid="uid://gsry37trdj0n" path="res://assets/boss/boss.glb" id="1_lg25k"]
+
+[node name="Boss" type="Node3D"]
+
+[node name="boss" parent="." instance=ExtResource("1_lg25k")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+
+[editable path="boss"]
