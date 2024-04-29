@@ -1,6 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dfmni3omdqi7x"]
+[gd_scene load_steps=19 format=3 uid="uid://dfmni3omdqi7x"]
 
+[ext_resource type="Script" path="res://entities/boss/Boss.gd" id="1_i28bg"]
 [ext_resource type="PackedScene" uid="uid://gsry37trdj0n" path="res://assets/boss/boss.glb" id="1_lg25k"]
+[ext_resource type="PackedScene" uid="uid://iomnvt8smdme" path="res://utils/animation/AnimationHelper.tscn" id="3_y0vne"]
 
 [sub_resource type="Animation" id="Animation_8kuwh"]
 resource_name = "attack"
@@ -412,7 +414,6 @@ animation = &"idle"
 animation = &"walk"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ofwis"]
-graph_offset = Vector2(-81, 63)
 nodes/Locomotion/node = SubResource("AnimationNodeTransition_g3h11")
 nodes/Locomotion/position = Vector2(370, 90)
 nodes/TriggerAttack/node = SubResource("AnimationNodeOneShot_fye0j")
@@ -426,38 +427,47 @@ nodes/walk/node = SubResource("AnimationNodeAnimation_3fhty")
 nodes/walk/position = Vector2(110, 180)
 node_connections = [&"Locomotion", 0, &"idle", &"Locomotion", 1, &"walk", &"TriggerAttack", 0, &"Locomotion", &"TriggerAttack", 1, &"attack", &"output", 0, &"TriggerAttack"]
 
-[node name="Boss" type="Node3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e2ne8"]
+radius = 1.7558
+height = 4.74194
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bxk3s"]
+radius = 2.93604
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hw7so"]
+radius = 14.1437
+
+[node name="Boss" type="CharacterBody3D"]
+script = ExtResource("1_i28bg")
 
 [node name="Model" parent="." instance=ExtResource("1_lg25k")]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+transform = Transform3D(-2.62268e-08, -2.09272e-16, -0.6, 2.09272e-16, 0.6, -2.09272e-16, 0.6, -2.09272e-16, -2.62268e-08, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Model/Armature" index="0"]
-bones/0/position = Vector3(0.0130891, 1.66422, 4.17188e-08)
+bones/0/position = Vector3(0.0293036, 1.24111, 7.8744e-08)
 bones/1/rotation = Quaternion(-0.00180385, -0.707095, -0.0018038, 0.707114)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/rotation = Quaternion(-0.70576, 0.0668873, -0.0536807, 0.70324)
+bones/3/rotation = Quaternion(-0.764332, 0.175316, 0.0413862, 0.619152)
 bones/4/scale = Vector3(1.31638, 1.27286, 1.33673)
-bones/5/position = Vector3(0.842566, 1.62422, -0.0266927)
-bones/5/rotation = Quaternion(0.51988, 0.482017, 0.524051, -0.471969)
-bones/5/scale = Vector3(1, 1, 1)
-bones/6/rotation = Quaternion(-0.319302, -0.0139783, 0.00891279, 0.947508)
+bones/5/position = Vector3(0.77697, 1.27569, -0.0266895)
+bones/5/rotation = Quaternion(0.496527, 0.50604, 0.501168, -0.4962)
+bones/6/rotation = Quaternion(-0.320684, -0.0139877, 0.00893367, 0.947041)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/position = Vector3(0.0129945, 1.57632, -0.864273)
-bones/7/rotation = Quaternion(-0.733297, 0.000556256, -0.000599935, 0.679908)
+bones/7/position = Vector3(0.0129945, 1.31559, -0.831866)
+bones/7/rotation = Quaternion(-0.713444, 0.000573276, -0.000583692, 0.700712)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(-0.315749, 6.0916e-11, -0.00051665, 0.948843)
+bones/8/rotation = Quaternion(-0.316451, 7.88589e-11, -0.000517798, 0.948609)
 bones/8/scale = Vector3(1, 1, 1)
-bones/9/position = Vector3(-0.971129, 1.60235, -1.17438e-08)
-bones/9/rotation = Quaternion(-0.526566, 0.471941, 0.526566, 0.47194)
-bones/9/scale = Vector3(1, 1, 1)
-bones/10/rotation = Quaternion(-0.334882, -7.13433e-10, -5.01439e-09, 0.94226)
-bones/11/position = Vector3(-1.62335e-13, 1.59344, 0.872978)
-bones/11/rotation = Quaternion(8.59208e-07, 0.663484, 0.74819, 7.61933e-07)
+bones/9/position = Vector3(-0.973401, 1.38311, 4.2957e-08)
+bones/9/rotation = Quaternion(-0.510234, 0.489552, 0.510234, 0.489552)
+bones/10/rotation = Quaternion(-0.336553, -1.2891e-09, -4.11316e-09, 0.941664)
+bones/11/position = Vector3(-2.01205e-13, 1.34105, 0.873506)
+bones/11/rotation = Quaternion(8.35395e-07, 0.686156, 0.727454, 7.87969e-07)
 bones/11/scale = Vector3(1, 1, 1)
-bones/12/rotation = Quaternion(-0.288105, 7.65586e-13, 6.61711e-07, 0.957599)
+bones/12/rotation = Quaternion(-0.288887, 5.34643e-13, 6.63506e-07, 0.957363)
 
 [node name="eye" parent="Model/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1.31527, -0.0333872, 0.042174, 0.0345263, 1.27243, 0.000627623, -0.0415336, 0.000456225, 1.33607, 0.403026, 7.18804, -0.016091)
+transform = Transform3D(1.2271, 0.188858, 0.441378, -0.195306, 1.25836, -0.0339209, -0.434663, -0.032247, 1.2613, 0.402206, 6.74994, -0.0412987)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../Model")
@@ -472,5 +482,22 @@ parameters/Locomotion/current_index = 0
 parameters/TriggerAttack/active = false
 parameters/TriggerAttack/internal_active = false
 parameters/TriggerAttack/request = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.51071, 0)
+shape = SubResource("CapsuleShape3D_e2ne8")
+
+[node name="PhysicAttack" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PhysicAttack"]
+shape = SubResource("SphereShape3D_bxk3s")
+
+[node name="AnimationHelper" parent="." node_paths=PackedStringArray("animation_tree") instance=ExtResource("3_y0vne")]
+animation_tree = NodePath("../AnimationTree")
+
+[node name="Detection" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Detection"]
+shape = SubResource("SphereShape3D_hw7so")
 
 [editable path="Model"]

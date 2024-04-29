@@ -1,3 +1,4 @@
+class_name PlayerEntity
 extends CharacterBody3D
 
 signal start_open_chest
