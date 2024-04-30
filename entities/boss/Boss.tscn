@@ -467,7 +467,7 @@ bones/11/scale = Vector3(1, 1, 1)
 bones/12/rotation = Quaternion(-0.281093, 5.51476e-13, 6.45606e-07, 0.959681)
 
 [node name="eye" parent="Model/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1.24839, 0.225652, 0.351655, -0.233367, 1.25233, -0.0319987, -0.346302, -0.0304666, 1.28925, 0.403391, 6.72082, -0.035567)
+transform = Transform3D(1.24839, 0.225651, 0.351656, -0.233366, 1.25233, -0.0319984, -0.346302, -0.0304666, 1.28925, 0.403391, 6.72082, -0.0355672)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../Model")

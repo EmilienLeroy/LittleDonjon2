@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="QodotFGDFile" load_steps=26 format=3 uid="uid://dl8y3css3pj2l"]
+[gd_resource type="Resource" script_class="QodotFGDFile" load_steps=27 format=3 uid="uid://dl8y3css3pj2l"]
 
 [ext_resource type="Resource" uid="uid://dgm276g7bw8q5" path="res://addons/qodot/game_definitions/fgd/base_classes/target_base_class.tres" id="1_r2ko2"]
 [ext_resource type="Resource" uid="uid://ccdjpf5j25aua" path="res://addons/qodot/game_definitions/fgd/base_classes/targetname_base_class.tres" id="2_6bd3n"]
@@ -25,6 +25,7 @@
 [ext_resource type="Resource" uid="uid://w3nw4t85v5ft" path="res://entities/chest/chest.tres" id="22_0fusk"]
 [ext_resource type="Resource" uid="uid://cpiuaywf6g5lf" path="res://entities/camera/camera.tres" id="23_olrlm"]
 [ext_resource type="Resource" uid="uid://boe6grxtkug6b" path="res://entities/boss/Boss.tres" id="24_qesu0"]
+[ext_resource type="Resource" uid="uid://b581xixj157ix" path="res://entities/boss/BossLight.tres" id="25_avju2"]
 
 [resource]
 script = ExtResource("18_qd3v5")
@@ -32,4 +33,4 @@ export_file = false
 target_folder = ""
 fgd_name = "Little Donjon"
 base_fgd_files = Array[Resource]([])
-entity_definitions = Array[Resource]([ExtResource("1_r2ko2"), ExtResource("2_6bd3n"), ExtResource("3_xuuf8"), ExtResource("4_0svj8"), ExtResource("5_hxk8u"), ExtResource("6_x7u41"), ExtResource("7_a1df2"), ExtResource("8_lf64x"), ExtResource("9_8djvc"), ExtResource("10_o08k2"), ExtResource("11_skt64"), ExtResource("12_d7rt6"), ExtResource("13_nv4rk"), ExtResource("14_2andt"), ExtResource("15_v2g2s"), ExtResource("16_r5t6g"), ExtResource("17_rxbfy"), ExtResource("18_3lqkv"), ExtResource("19_ompuv"), ExtResource("20_6w8ss"), ExtResource("21_fib5h"), ExtResource("22_0fusk"), ExtResource("23_olrlm"), ExtResource("24_qesu0")])
+entity_definitions = Array[Resource]([ExtResource("1_r2ko2"), ExtResource("2_6bd3n"), ExtResource("3_xuuf8"), ExtResource("4_0svj8"), ExtResource("5_hxk8u"), ExtResource("6_x7u41"), ExtResource("7_a1df2"), ExtResource("8_lf64x"), ExtResource("9_8djvc"), ExtResource("10_o08k2"), ExtResource("11_skt64"), ExtResource("12_d7rt6"), ExtResource("13_nv4rk"), ExtResource("14_2andt"), ExtResource("15_v2g2s"), ExtResource("16_r5t6g"), ExtResource("17_rxbfy"), ExtResource("18_3lqkv"), ExtResource("19_ompuv"), ExtResource("20_6w8ss"), ExtResource("21_fib5h"), ExtResource("22_0fusk"), ExtResource("23_olrlm"), ExtResource("24_qesu0"), ExtResource("25_avju2")])
