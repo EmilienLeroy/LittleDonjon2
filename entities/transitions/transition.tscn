@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjyjvqfi1d678"]
+
+[ext_resource type="PackedScene" uid="uid://c76bv38thhmj8" path="res://entities/transitions/fade.tscn" id="1_p438r"]
+[ext_resource type="Script" path="res://entities/transitions/transition.gd" id="1_sgv6m"]
+
+[node name="Transition" type="CanvasLayer"]
+script = ExtResource("1_sgv6m")
+
+[node name="Fade" parent="." instance=ExtResource("1_p438r")]

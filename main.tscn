@@ -1,26 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccgfdjmtd58r3"]
+[gd_scene load_steps=2 format=3 uid="uid://ccgfdjmtd58r3"]
 
-[ext_resource type="PackedScene" uid="uid://b44y8edunba02" path="res://scenes/Boss.tscn" id="3_f6ioa"]
-[ext_resource type="AudioStream" uid="uid://cgarx0n5m01bp" path="res://assets/sounds/Donjon1.mp3" id="18_v1no4"]
-
-[sub_resource type="Environment" id="Environment_3l6tc"]
-background_mode = 1
-background_color = Color(0.101961, 0.101961, 0.101961, 1)
-volumetric_fog_enabled = true
+[ext_resource type="PackedScene" uid="uid://cjuib47no68a0" path="res://scenes/Donjon.tscn" id="2_wvdhf"]
 
 [node name="Main" type="Node3D"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_3l6tc")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.038587, 0.928285, -0.369862, -0.096323, 0.37187, 0.923274, 0.994602, -1.16939e-07, 0.103765, 0, 6.46666, 0)
-visible = false
-shadow_enabled = true
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-process_mode = 3
-stream = ExtResource("18_v1no4")
-volume_db = -30.0
-
-[node name="Boss" parent="." instance=ExtResource("3_f6ioa")]
+[node name="Donjon" parent="." instance=ExtResource("2_wvdhf")]
