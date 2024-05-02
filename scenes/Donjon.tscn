@@ -923,10 +923,11 @@ shadow_enabled = true
 process_mode = 3
 stream = ExtResource("1_w8sho")
 volume_db = -30.0
+autoplay = true
 
 [node name="Camera3D" type="Camera3D" parent="." groups=["camera"]]
 process_mode = 3
-transform = Transform3D(1, -1.68888e-07, 4.52534e-08, 9.02727e-17, 0.258819, 0.965926, -1.74846e-07, -0.965926, 0.258819, 1.88023e-14, 9.22741, 3.57055)
+transform = Transform3D(1, -1.68888e-07, 4.52535e-08, 9.02727e-17, 0.258819, 0.965926, -1.74846e-07, -0.965926, 0.258819, 2.14614e-14, 9.22741, 3.57055)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 script = ExtResource("22_e1trc")

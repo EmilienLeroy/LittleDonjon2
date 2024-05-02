@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b44y8edunba02"]
+[gd_scene load_steps=30 format=3 uid="uid://b44y8edunba02"]
 
 [ext_resource type="Script" path="res://addons/qodot/src/nodes/qodot_map.gd" id="1_codmf"]
 [ext_resource type="Resource" uid="uid://dl8y3css3pj2l" path="res://entities/qodot_fgd.tres" id="2_khntg"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dfmni3omdqi7x" path="res://entities/boss/Boss.tscn" id="7_gp8i1"]
 [ext_resource type="PackedScene" uid="uid://cp3r1tncdnmnb" path="res://entities/boss/BossLight.tscn" id="8_8e61r"]
 [ext_resource type="PackedScene" uid="uid://cagiib3uhuoui" path="res://entities/torch/Torch.tscn" id="9_ctmia"]
+[ext_resource type="AudioStream" uid="uid://25d36ob3e433" path="res://assets/sounds/Boss.mp3" id="11_0qb87"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="11_iw80n"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6h85s"]
@@ -197,3 +198,8 @@ transform = Transform3D(1, -1.68888e-07, 4.52535e-08, 9.02727e-17, 0.258819, 0.9
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 script = ExtResource("11_iw80n")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_0qb87")
+volume_db = -20.0
+autoplay = true
