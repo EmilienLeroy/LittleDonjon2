@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://cp3r1tncdnmnb"]
 
-[node name="BossLight" type="Node3D"]
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="BossLight" type="OmniLight3D"]
 light_color = Color(3, 0.078, 0.078, 1)
 shadow_enabled = true
 omni_range = 25.0

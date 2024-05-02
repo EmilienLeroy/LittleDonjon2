@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://cagiib3uhuoui"]
 
-[node name="Torch" type="Node3D"]
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="Torch" type="OmniLight3D"]
 light_color = Color(0.996078, 0.733333, 0.517647, 1)
 light_energy = 3.0
 shadow_enabled = true

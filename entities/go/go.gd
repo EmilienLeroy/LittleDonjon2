@@ -2,7 +2,7 @@ class_name GoEntity
 extends Area3D
 
 var donjon = load("res://scenes/Donjon.tscn");
-var boss = load("res://scenes/Boss.tscn");
+var boss = load("res://scenes/EnterBoss/EnterBoss.tscn");
 
 var scenes = {
 	'donjon': donjon,
