@@ -20,12 +20,16 @@ var open_target: OpenEntity;
 var chest_target: ChestEntity;
 var keys: Array[String] = [];
 var is_opening_chest = false;
+var disable_control = false;
 
 func _ready():
 	$AnimationKey.play('turn');
 	$AttackTimer.connect('timeout', on_combo_timeout);
 
 func _unhandled_key_input(event):
+	if disable_control:
+		return;
+	
 	if event.is_action_pressed('attack'):
 		attack();
 		
@@ -59,7 +63,7 @@ func _physics_process(delta):
 		if (helper.get_animation_time('AttackFinal') > 0.9 and helper.get_animation_time('AttackFinal') < 1.2):
 			walk_speed = SPEED * 1.5;
 	
-	if direction:
+	if direction and !disable_control:
 		$Model.rotation.y = lerp_angle($Model.rotation.y, get_model_rotation(direction), 0.3);
 		helper.transition_animation('Locomotion', 'walk');
 		move_to(direction, walk_speed);

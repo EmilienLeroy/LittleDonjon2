@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://entities/transitions/transition.gd" id="1_sgv6m"]
 
 [node name="Transition" type="CanvasLayer"]
+layer = 10
 script = ExtResource("1_sgv6m")
 
 [node name="Fade" parent="." instance=ExtResource("1_p438r")]

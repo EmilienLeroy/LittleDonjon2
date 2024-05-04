@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://ccgfdjmtd58r3"]
 
-[ext_resource type="PackedScene" uid="uid://cjuib47no68a0" path="res://scenes/Donjon.tscn" id="2_wvdhf"]
+[ext_resource type="PackedScene" uid="uid://c5xwja7h1rpf" path="res://scenes/Menu/Menu.tscn" id="1_v7nm4"]
 
 [node name="Main" type="Node3D"]
 
-[node name="Donjon" parent="." instance=ExtResource("2_wvdhf")]
+[node name="Menu" parent="." instance=ExtResource("1_v7nm4")]
