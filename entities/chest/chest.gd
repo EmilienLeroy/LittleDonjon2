@@ -25,9 +25,13 @@ func on_body_entered(body: Node3D):
 		return
 	
 	body.chest_target = self;
+	
+	if (!is_open):
+		body.update_info('Press Space to open.');
 
 func on_body_exited(body: Node3D):
 	if (!body.is_in_group('player')):
 		return
 		
 	body.chest_target = null;
+	body.update_info('');

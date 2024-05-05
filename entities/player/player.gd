@@ -188,6 +188,9 @@ func try_open_door():
 		return;
 		
 	open_target.open(keys);
+	
+	if (open_target.is_open):
+		update_info('');
 
 func try_open_chest():
 	if (!chest_target):
@@ -209,6 +212,7 @@ func try_open_chest():
 	key_model.visible = true;
 	
 	helper.transition_animation('Locomotion', 'chest');
+	update_info('You found a key. Press space to continue.');
 
 
 func try_resume_chest():
@@ -222,6 +226,7 @@ func try_resume_chest():
 	end_open_chest.emit();
 	is_opening_chest = false;
 	get_tree().paused = false;
+	update_info('');
 
 func update_trail():
 	if (is_attacking()):
@@ -237,3 +242,6 @@ func is_attacking():
 	return ((helper.get_animation_state('TriggerAttack') and helper.get_animation_time('Attack') < 0.8) 
 		or (helper.get_animation_state('TriggerAttackReverse') and helper.get_animation_time('AttackReverse') < 1.2)
 		or (helper.get_animation_state('TriggerAttackFinal') and helper.get_animation_time('AttackFinal') < 1.2));
+
+func update_info(info: String):
+	$CanvasLayer/Info.text = info;
